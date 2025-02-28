@@ -1,0 +1,80 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #222; /* Dark background */
+  overflow: hidden; /* Hide overflow */
+}
+
+.loading-text {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff; /* White text */
+  text-shadow: 2px 2px 4px #000; /* Add shadow */
+}
+
+.cat-container {
+  position: relative;
+  width: 300px; /* Increased width */
+  height: 250px; /* Increased height */
+}
+
+.cat {
+  position: absolute;
+  width: 150px; /* Increased width */
+  height: 120px; /* Increased height */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  opacity: 0.7; /* Added transparency */
+}
+
+.cat:hover {
+  transform: scale(1.1);
+}
+
+.explode {
+  animation: explode 0.5s forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.mini-cat {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  animation: mini-cat-fall 0.8s forwards,
+             rotate 0.8s linear forwards; /* Add rotation */
+}
+
+@keyframes mini-cat-fall {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

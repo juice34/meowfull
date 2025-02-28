@@ -1,0 +1,65 @@
+<<!-- filepath: /c:/Users/JWP/Downloads/streching cat/loading.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="cat-loader.css">
+  <title>Clickable Cat</title>
+</head>
+<body>
+  <div class="loading-text">Click the sad cat!</div>
+  <div class="cat-container">
+    <img src="https://down-yuantu.pngtree.com/element_our/20201230/bg/21e1c8fc55e29.png?e=1740708780&st=NWI5ZjNhMWRlMDBhMDAwMzZlZjg4NTEzNWU0ZTZmNWQ&n=%E2%80%94Pngtree%E2%80%94cute+british+shorthair+cat_5831918.png" alt="Cat" class="cat">
+  </div>
+  <audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/92/92.wav" preload="auto"></audio>
+  <audio id="meowSound" src="https://assets.mixkit.co/active_storage/sfx/92/92.wav" preload="auto"></audio>
+  <script src="cat-loader.js"></script>
+  <script>
+    const catContainer = document.querySelector('.cat-container');
+    const cat = document.querySelector('.cat');
+    const loadingText = document.querySelector('.loading-text');
+    const clickSound = document.getElementById('clickSound');
+    let clickCount = 0;
+    const phrases = ["Click the Cat!", "Again!", "Meow's the time!", "Pawsitively adorable", "Purrfect!", "Meow!"];
+
+    // Center the cat initially
+    cat.style.position = 'absolute';
+    cat.style.top = '50%';
+    cat.style.left = '50%';
+    cat.style.transform = 'translate(-50%, -50%)';
+
+    document.addEventListener('click', () => {
+      clickSound.play();
+      cat.classList.add('explode');
+      setTimeout(() => {
+        createMiniCats();
+        cat.style.display = 'none';
+      }, 500);
+
+      // Update loading text
+      clickCount++;
+      if (clickCount < phrases.length) {
+        loadingText.textContent = phrases[clickCount];
+      } else {
+        loadingText.textContent = "Purrfectly fabulous!";
+      }
+    });
+
+    function createMiniCats() {
+      for (let i = 0; i < 20; i++) {
+        const miniCat = document.createElement('img');
+        miniCat.src = 'https://png.pngtree.com/png-clipart/20210308/original/pngtree-yellow-eyed-british-shorthair-cat-head-png-image_5790546.jpg';
+        miniCat.alt = 'Mini Cat';
+        miniCat.classList.add('mini-cat');
+        miniCat.style.width = '50px';
+        miniCat.style.height = '50px';
+        miniCat.style.left = `${Math.random() * 200}px`;
+        miniCat.style.top = `${Math.random() * 150}px`;
+        miniCat.style.animationDelay = `${Math.random() * 0.5}s`; // Add a slight delay
+        catContainer.appendChild(miniCat);
+      }
+    }
+  </script>
+</body>
+</html>
